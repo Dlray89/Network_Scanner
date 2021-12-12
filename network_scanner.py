@@ -14,20 +14,19 @@ def scan_network(ip):
 
     arp_request = scapy.ARP(pdst=ip)  # set IP field
     # print(arp_request.summary())
-
     # create an eth frame that will send to the broadcast mac address
     # data and networks is always sent using the mac address
     # the source mac and des mac is set in the ethernet frame
 
     broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
-    # combine packets
-    # append using /
-    arp_request_broadcast = broadcast/arp_request
-    print(arp_request_broadcast.summary())
-    arp_request_broadcast.show()
+    # combine packets by using / to append together
+    arp_request_broadcast = broadcast / arp_request
+
+    # send arp_request_broadcast packet into the network.
+    # srp() allow us to send packets with a customer Ether layer
+    # set up timeout
+    answered, unanswered = scapy.srp(arp_request_broadcast, timeout=1)  # this will return a response from two list
+    print(answered.summary(), unanswered.summary())
 
 
-
-
-
-scan_network('10.0.0.1')
+scan_network('10.0.0.1/24')
