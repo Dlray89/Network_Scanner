@@ -7,8 +7,11 @@ import scapy.all as scapy
 
 
 def scan_network(ip):
-    # this function takes IP ranges Specifying  many IP in the same line
-    scapy.arping(ip)
+    # set var and create an ARP packet object
+    # use scapy to create an ARP object that represent as an ARP Packet
+    # list of all options scapy.ls(scapy.ARP())
+    arp_request = scapy.ARP(pdst=ip)  # this class will print a summary of the object just created
+    print(arp_request.summary())
 
 
-scan_network('10.0.0.1/24')
+scan_network('10.0.0.1')
