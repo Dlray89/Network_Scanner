@@ -1,0 +1,52 @@
+These are notes for building a network scanner. Dug through alot of documentation
+
+
+Going to use Scrapy to build the network scanner.
+
+Scapy:
+scapy is a python program that allow the user to send, sniff and dissect and forge network packets
+The capability allows constructing tools that can probe, scan or attack/A powerful interactive packet manipulation
+program.
+https://scapy.readthedocs.io/en/latest/introduction.html#about-scapy
+
+
+Step 1:
+Set up terminal response and request
+
+step 2:
+ # set var and create an ARP packet object
+ # use scapy to create an ARP object that represent as an ARP Packet
+ # list of all options from scapy using scapy.ls(scapy.ARP())/ Ether(MAC)= scapy.ls(scapy.Ether())
+ # .summary() will provide a small summary about what's going on.
+
+ step 3:
+ # set IP field
+ # print(arp_request.summary())
+ # create an eth frame that will send to the broadcast mac address
+ # data and networks is always sent using the mac address
+ # the source mac and des mac is set in the ethernet frame
+ # combine packets by using / to append together
+
+ step 4:
+  # send arp_request_broadcast packet into the network.
+    # srp() allows sending packets with a custom Ether layer
+    # set up timeout
+    # this will return a response from two list
+    # print(answered_list.summary())
+
+    step 5:
+    # create empty list
+     # iterate over the answered_list
+
+     step 6:
+     # parse the values are being capture in the list
+     # view list of properties using .show()
+     # set up dictionary and add keys and values
+
+
+     step 7:
+     # append dictionary to the main list (client_list)
+     # added escape keys for better format
+     # iterate through client list and print
+
+
