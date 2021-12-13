@@ -4,6 +4,15 @@
 # The capability allows constructing tools that can probe, scan or attack/A powerful interactive packet
 # manipulation program
 import scapy.all as scapy
+import optparse
+
+
+# set up terminal responses
+def get_arguments():
+    parser = optparse.OptionParser()
+    parser.add_option('-t', "--target", dest="target", help='Choice a Target IP / IP Range')
+    (options, arguments) = parser.parse_args()
+    return options
 
 
 def scan_network(ip):
@@ -51,5 +60,6 @@ def print_results(results_list):
         print(client["IP Address"] + "\t" + client["MAC Address"])
 
 
-scan_results = scan_network('10.0.0.1/24')
+option = get_arguments()
+scan_results = scan_network(option.target)
 print_results(scan_results)
