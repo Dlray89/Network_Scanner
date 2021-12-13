@@ -25,16 +25,16 @@ def scan_network(ip, answered=None):
     # send arp_request_broadcast packet into the network.
     # srp() allows sending packets with a custom Ether layer
     # set up timeout
-    answered_list = scapy.srp(arp_request_broadcast, timeout=1)[0]  # this will return a response from two list
+    # this will return a response from two list
     # print(answered_list.summary())
+    answered_list = scapy.srp(arp_request_broadcast, timeout=1, verbose=False)[0]
 
     # iterate over the answered_list
-
+    print("IP\t\tMAC ADDRESS\n------------------------------------------")
     for element in answered_list:
         # parse the values are being capture in the list
         # view list of properties using .show()
-        print(element[1].psrc)
-        print(element[1].hwsrc)
+        print(element[1].psrc + "\t" + element[1].hwsrc)
         print("---------------------------------------")
 
 
